@@ -1,0 +1,21 @@
+--- CMakeLists.txt.orig	2022-01-15 02:43:36 UTC
++++ CMakeLists.txt
+@@ -99,16 +99,10 @@ if ( APPLE )
+ 	install ( FILES ${PPDS} DESTINATION "${PPDPATH}" )
+ 	install ( CODE "EXECUTE_PROCESS(COMMAND sudo launchctl start org.cups.cupsd)" )
+ elseif ( UNIX )
+-	set ( FILTERPATH "usr/lib/cups/filter" )
+-	set ( PPDPATH "usr/share/cups/model/zjiang/" )
+-	set ( OWNER "root:root")
+-	install ( CODE "EXECUTE_PROCESS(COMMAND /etc/init.d/cups stop)" )
++	set ( FILTERPATH "%%CUPS_FILTER_DIR%%/" )
++	set ( PPDPATH "%%ZJ_58_MODEL_DIR%%/" )
+ 	install ( TARGETS rastertozj DESTINATION ${FILTERPATH} )
+-	# this line sets correct target permissions, due to CUPS requirements
+-	# However as a side effect you'll need either fakeroot, either sudo to even perform 'make package' because of it.
+-	install ( CODE "EXECUTE_PROCESS(COMMAND chown ${OWNER} \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${FILTERPATH}/rastertozj\")" )
+ 	install ( FILES ${PPDS} DESTINATION "${PPDPATH}" )
+-	install ( CODE "EXECUTE_PROCESS(COMMAND /etc/init.d/cups start)" )
+ endif()
+ 
+ include (CPack)

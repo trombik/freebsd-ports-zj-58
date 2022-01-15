@@ -1,0 +1,27 @@
+[
+{ type: install
+  message: <<__EOM__
+
+The PPD files are available under "Zijiang" in the CUPS administration page.
+
+For USB printers, `dmesg(8)` should have something like:
+
+ugen0.6: <Xprinter product 0x5743> at usbus0
+ulpt0 on uhub1
+ulpt0: <Xprinter product 0x5743, class 0/0, rev 2.00/1.00, addr 50> on usbus0
+ulpt0: using bi-directional mode
+ulpt0: offline
+
+Make sure the printer is known to cupsd.
+
+> sudo /usr/local/libexec/cups/backend/usb
+DEBUG: Loading USB quirks from "/usr/local/share/cups/usb".
+DEBUG: Loaded 98 quirks.
+DEBUG: list_devices
+DEBUG: libusb_get_device_list=7
+DEBUG2: Printer found with device ID: Device URI: usb://Unknown/Printer
+direct usb://Unknown/Printer "Unknown" "Unknown" "   " ""
+
+__EOM__
+}
+]

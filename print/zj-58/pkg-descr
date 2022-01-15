@@ -1,0 +1,9 @@
+CUPS filter for cheap thermal receipt printers as Zijiang ZJ-58, XPrinter
+XP-58, JZ-80 with cutter, Epson TM-T20, and may be any other printers
+understanding ESC/POS commands.
+
+List of confirmed printers:
+
+* XP-N160II
+
+WWW: https://github.com/klirichek/zj-58
